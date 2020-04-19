@@ -68,11 +68,11 @@ dt_string = now.strftime("%Y-%m-%d_%H:%M:%S")
 
 trainer: ModelTrainer = ModelTrainer(tagger, corpus)
 
-# 7. start training
+# start training
 trainer.train( ROOT_DIR + '/models/fged/en_flair+bpemb_emb_'+ dt_string,
               learning_rate=0.1,
               mini_batch_size=208,
-              max_epochs=25, patience=3, checkpoint=True, embeddings_storage_mode='none', num_workers=12, use_amp=True,)
+              max_epochs=30, patience=3, checkpoint=True, embeddings_storage_mode='none', num_workers=12, use_amp=True,)
 
 # 8. plot training curves (optional)
 from flair.visual.training_curves import Plotter
