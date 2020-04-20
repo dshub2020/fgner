@@ -9,16 +9,16 @@ import torch
 from definitions import ROOT_DIR
 from datetime import datetime
 
-manualSeed = 1
+#manualSeed = 1
 
-np.random.seed(manualSeed)
-random.seed(manualSeed)
-torch.manual_seed(manualSeed)
+#np.random.seed(manualSeed)
+#random.seed(manualSeed)
+#torch.manual_seed(manualSeed)
 
-torch.cuda.manual_seed(manualSeed)
-torch.cuda.manual_seed_all(manualSeed)
+#torch.cuda.manual_seed(manualSeed)
+#torch.cuda.manual_seed_all(manualSeed)
 
-torch.backends.cudnn.deterministic = True
+#torch.backends.cudnn.deterministic = True
 
 print(flair.device)
 
@@ -42,11 +42,11 @@ print(tag_dictionary)
 
 embedding_types: List[TokenEmbeddings] = [
 
-    FlairEmbeddings("en-forward-fast", fine_tune=True),
+    FlairEmbeddings("news-forward-fast"),
 
-    BytePairEmbeddings(language='en', dim=300, syllables=300000),
+    BytePairEmbeddings(language='en', dim=300, syllables=200000),
 
-    FlairEmbeddings("en-backward-fast", fine_tune=True),
+    FlairEmbeddings("news-backward-fast"),
 ]
 
 embeddings: StackedEmbeddings = StackedEmbeddings(embeddings=embedding_types)
@@ -71,8 +71,8 @@ trainer: ModelTrainer = ModelTrainer(tagger, corpus)
 # start training
 trainer.train( ROOT_DIR + '/models/fged/en_flair+bpemb_emb_'+ dt_string,
               learning_rate=0.1,
-              mini_batch_size=208,
-              max_epochs=30, patience=3, checkpoint=True, embeddings_storage_mode='none', num_workers=12, use_amp=True,)
+              mini_batch_size=256,
+              max_epochs=30,checkpoint=True, patience=3, embeddings_storage_mode='none', num_workers=12, use_amp=True)
 
 # 8. plot training curves (optional)
 from flair.visual.training_curves import Plotter
