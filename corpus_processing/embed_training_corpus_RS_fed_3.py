@@ -3,6 +3,8 @@ import json
 import re
 import numpy as np
 import torch
+
+print(torch.cuda.is_available())
 import random
 
 from flair.data import Sentence
@@ -11,6 +13,7 @@ from flair.embeddings import TokenEmbeddings, StackedEmbeddings, FlairEmbeddings
 from typing import List
 
 from definitions import ROOT_DIR
+
 
 def softmax(x):
     return np.exp(x) / sum(np.exp(x))
@@ -133,7 +136,7 @@ with open(ROOT_DIR + "/datasets/HAnDS/RS_fner_3.json", "r", encoding="utf-8") as
                     else:
                         left_weigths.append(1)
 
-                    left_context.append(sentence[i].embedding.detach().numpy())
+                    left_context.append(sentence[i].embedding.detach().cpu().numpy())
 
                 if left_context == []:
                     left_context = np.zeros(1068, dtype=np.float16)
@@ -162,7 +165,7 @@ with open(ROOT_DIR + "/datasets/HAnDS/RS_fner_3.json", "r", encoding="utf-8") as
                     else:
                         weigths_entity.append(1)
 
-                    entity_embedding.append(sentence[i].embedding.detach().numpy())
+                    entity_embedding.append(sentence[i].embedding.detach().cpu().numpy())
 
                 weigths_entity = softmax(np.array(weigths_entity))
 
@@ -184,7 +187,7 @@ with open(ROOT_DIR + "/datasets/HAnDS/RS_fner_3.json", "r", encoding="utf-8") as
                     else:
                         rigth_weigths.append(1)
 
-                    rigth_context.append(sentence[i].embedding.detach().numpy())
+                    rigth_context.append(sentence[i].embedding.detach().cpu().numpy())
 
                 tmp_flag = 1
 

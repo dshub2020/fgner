@@ -2,7 +2,7 @@ import json
 
 f1 = open("/media/janzz11/Backup_Drive/rs_3_fetuared_embedded_flair_bpemb_train.jsonl", "r")
 
-f2 = open("/media/janzz11/Backup_Drive/rs_3_classes.jsonl", "w")
+#f2 = open("/media/janzz11/Backup_Drive/rs_3_classes.jsonl", "w")
 
 classes = {}
 
@@ -13,6 +13,8 @@ c = 0
 for line in f1:
 
     x = json.loads(line)
+
+    print(len(x['encoded_entity']))
 
     for elem in x["labels"]:
 
