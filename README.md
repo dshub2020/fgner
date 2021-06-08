@@ -1,2 +1,7 @@
-# fgner
-This is the main repository for conducting experiments on Fine Grained Entity Recognition (fgner) using different datasets and models, this repository could also serve as a source code and reference point to reproduce future results.
+# Noun-based Attention Mechanism for Fine-grained Named Entity Recognition
+This repository contains the code and data to reproduce the experiments in the article: _Noun-based Attention Mechanism for Fine-grained Named Entity Recognition_
+
+“Fine-grained Named Entity Recognition is a challenging Natural Language Processing problem, as it requires classifying entity mentions into hundreds of types, which are mostly organized in multiple hierarchy levels and may span across several domains. This task can be divided into two subtasks:  Fine-grained Named Entity Detection and Fine-grained Named Entity Typing. In this work, we propose solutions for both of these subtasks. For the former, we propose a system that uses a stack of Byte-Pair Encoded vectors in combination with Flair embeddings,  followed by a BILSTM-CRF network, which allowed us to improve the current state of the art for 1k-WFB-g dataset. For the latter, we propose an attention mechanism based on the syntactic type of each word, focusing mainly on the use of noun elements. We designed an architecture that combines Byte-Pair Encoded vectors with one of three contextual embeddings: ELMo, Flair, and BERT. We evaluated how different network components influence performance, and compared our results with those obtained by  a generic attention mechanism, where our method presented better results.”
+
+
+Keywords:  _Fine-grained Named Entity Recognition, Entity detection, Entity typing, Noun-based attention mechanism_
